@@ -1,15 +1,10 @@
 const Joi = require('joi');
 const express = require('express');
+const { Genre } = require('../models');
 const router = express.Router();
 
-const genres = [
-  { id: 1, name: 'Action' },  
-  { id: 2, name: 'Horror' },  
-  { id: 3, name: 'Romance' },  
-];
-
 router.get('/', (req, res) => {
-  res.send(genres);
+  Genre.find().then(genres => res.send(genres));
 });
 
 router.post('/', (req, res) => {
