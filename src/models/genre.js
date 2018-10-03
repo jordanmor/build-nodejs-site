@@ -6,7 +6,7 @@ const GenreSchema = new Schema({
   name: {
     type: String,
     required: [true, 'Genre name is required'],
-    minlength: 3,
+    minlength: 5,
     maxLength: 50
   }
 });
@@ -15,11 +15,12 @@ const Genre = mongoose.model('Genre', GenreSchema);
 
 function validateGenre(genre) {
   const schema = {
-    name: Joi.string().min(3).required()
+    name: Joi.string().min(5).required()
   };
 
   return Joi.validate(genre, schema);
 }
 
+module.exports.GenreSchema = GenreSchema;
 module.exports.Genre = Genre;
 module.exports.validate = validateGenre;
