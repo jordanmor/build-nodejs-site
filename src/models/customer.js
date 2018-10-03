@@ -1,14 +1,6 @@
+const Joi = require('joi');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
-const GenreSchema = new Schema({
-  name: {
-    type: String,
-    required: [true, 'Genre name is required'],
-    minlength: 3,
-    maxLength: 50
-  }
-});
 
 const CustomerSchema = new Schema({
   name: {
@@ -31,8 +23,17 @@ const CustomerSchema = new Schema({
   }
 });
 
-const Genre = mongoose.model('Genre', GenreSchema);
 const Customer = mongoose.model('Customer', CustomerSchema);
 
-module.exports.Genre = Genre;
+function validateCustomer(genre) {
+  const schema = {
+    name: Joi.string().min(3).required(),
+    phone: Joi.string().required(),
+    isGold: Joi.boolean()
+  };
+
+  return Joi.validate(genre, schema);
+}
+
 module.exports.Customer = Customer;
+module.exports.validate = validateCustomer;
