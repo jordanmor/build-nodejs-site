@@ -5,7 +5,7 @@ const GenreSchema = new Schema({
     name: {
         type: String,
         required: [true, 'Genre name is required'],
-        minlength: 5,
+        minlength: 3,
         maxLength: 50
     }
 });
