@@ -10,6 +10,20 @@ const GenreSchema = new Schema({
     }
 });
 
+const CustomerSchema = new Schema({
+    name: {
+        type: String,
+        required: [true, 'Customer name is required']
+    },
+    phone: String,
+    isGold: {
+        type: Boolean,
+        default: false
+    }
+});
+
 const Genre = mongoose.model('Genre', GenreSchema);
+const Customer = mongoose.model('Customer', CustomerSchema);
 
 module.exports.Genre = Genre;
+module.exports.Customer = Customer;
